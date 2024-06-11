@@ -1,0 +1,7 @@
+# local files
+target
+.env
+
+# ide files
+.idea
+.vscode
