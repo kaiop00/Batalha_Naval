@@ -1,6 +1,7 @@
 # local files
 target
 .env
+database.db
 
 # ide files
 .idea
