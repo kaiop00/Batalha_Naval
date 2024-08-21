@@ -1,19 +1,19 @@
 package br.ufc.quixada.model;
 
 public class Player {
-  private int name;
+  private String name;
   private boolean ia;
 
-  public Player(int name, boolean ia){
+  public Player(String name, boolean ia){
     this.name = name;
     this.ia = ia;
   }
 
-  public int getName(){
+  public String getName(){
     return name;
   }
 
-  public void setName(int name){
+  public void setName(String name){
     this.name = name;
   }
 
