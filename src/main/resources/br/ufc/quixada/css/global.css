@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'MedievalSharp';
+    src: url('../fonts/MedievalRegular.ttf');
+}
+
+.root {
+    -fx-font-family: 'MedievalSharp';
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-background-color: #8B4513; /* Cor marrom para um aspecto mais medieval */
+    -fx-text-fill: #FFD700; /* Cor dourada para o texto */
+}
+
+.label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #4B0082; /* Cor índigo para títulos */
+}
