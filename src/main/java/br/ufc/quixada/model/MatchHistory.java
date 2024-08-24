@@ -1,31 +1,41 @@
 package br.ufc.quixada.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class MatchHistory {
-  private Date date;
-  private Player[] players;
+  private Integer id;
+  private LocalDateTime dateTime;
+  private List<Player> players;
   private Player winner;
-  
-  public MatchHistory(Date date, Player[] players, Player winner){
-    this.date = date;
+
+  public MatchHistory(Integer id, LocalDateTime date, List<Player> players, Player winner) {
+    this.id = id;
+    this.dateTime = date;
     this.players = players;
     this.winner = winner;
   }
 
-  public Date getDate() {
-    return date;
+  public MatchHistory(LocalDateTime date, List<Player> players, Player winner) {
+    this.dateTime = date;
+    this.players = players;
+    this.winner = winner;
   }
 
-  public void setDate(Date date) {
-    this.date = date;
+  public LocalDateTime getDateTime() {
+    return dateTime;
   }
 
-  public Player[] getPlayers() {
+  public void setLocalDateTime(LocalDateTime date) {
+    this.dateTime = date;
+  }
+
+  public List<Player> getPlayers() {
     return players;
   }
 
-  public void setPlayers(Player[] players) {
+  public void setPlayers(List<Player> players) {
     this.players = players;
   }
 
@@ -34,6 +44,51 @@ public class MatchHistory {
   }
 
   public void setWinner(Player winner) {
-    this.winner = winner;
+    if (players.contains(winner)) {
+      this.winner = winner;
+    } else {
+      throw new IllegalArgumentException("Winner must be one of the players");
+    }
   }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MatchHistory other = (MatchHistory) obj;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    if (dateTime == null) {
+      if (other.dateTime != null)
+        return false;
+    } else if (!dateTime.withNano(0).equals(other.dateTime.withNano(0)))
+      return false;
+    if (players == null) {
+      if (other.players != null)
+        return false;
+    } else if (!players.equals(other.players))
+      return false;
+    if (winner == null) {
+      if (other.winner != null)
+        return false;
+    } else if (!winner.equals(other.winner))
+      return false;
+    return true;
+  }
+
 }
