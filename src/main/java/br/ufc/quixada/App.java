@@ -12,10 +12,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(loadFXML("home"), 800, 600);
+        Scene scene = new Scene(loadFXML("home"), 1920, 1024);
         stage.setScene(scene);
         stage.setTitle("Batalha Naval");
-        stage.setMaximized(true);  // Isso fará a janela iniciar maximizada
+        stage.setMaximized(true);
+        stage.setFullScreen(true);
         stage.show();
     }
 
