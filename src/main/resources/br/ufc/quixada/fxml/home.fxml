@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           xmlns="http://javafx.com/javafx/13"
+           fx:id="rootPane"
+           styleClass="root"
+           fx:controller="br.ufc.quixada.controller.HomeController">
+    <stylesheets>
+        <URL value="@/br/ufc/quixada/css/global.css"/>
+        <URL value="@/br/ufc/quixada/css/home.css"/>
+    </stylesheets>
+    <VBox alignment="CENTER" spacing="20">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Batalha Naval" styleClass="title"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="buttonStartSinglePlayer" text="Iniciar Jogo Single Player" styleClass="menu-button"/>
+            <Button fx:id="buttonStartMultiPlayer" text="Iniciar Jogo Multi Player" styleClass="menu-button"/>
+            <Button fx:id="buttonShowHistory" text="Ver Histórico" styleClass="menu-button"/>
+        </HBox>
+    </VBox>
+    <Button fx:id="buttonExit" text="Sair" styleClass="exit-button"
+            StackPane.alignment="BOTTOM_RIGHT">
+        <StackPane.margin>
+            <Insets bottom="20" right="20"/>
+        </StackPane.margin>
+    </Button>
+</StackPane>
