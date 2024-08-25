@@ -60,11 +60,12 @@ public class HomeController {
 
         // Criação dos tabuleiros
         Board board1 = new Board();
+        Board board2 = new Board();
 
         // Associação dos jogadores com seus tabuleiros
         List<Pair<Player, Board>> playerBoards = new ArrayList<>();
         playerBoards.add(new Pair<>(player1, board1));
-        playerBoards.add(new Pair<>(player2, board1)); // Ambos os jogadores usam o mesmo tabuleiro no modo single player
+        playerBoards.add(new Pair<>(player2, board2)); // Ambos os jogadores usam o mesmo tabuleiro no modo single player
 
         // Criação da partida
         Match match = new Match(playerBoards, player1);
