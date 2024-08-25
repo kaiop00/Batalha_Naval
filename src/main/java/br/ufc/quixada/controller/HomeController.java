@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import br.ufc.quixada.model.Player;
 import br.ufc.quixada.model.Match;
 import br.ufc.quixada.model.Board;
+import br.ufc.quixada.util.CurrentMatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,13 @@ public class HomeController {
     @FXML
     private Button buttonExit;
 
+    private MatchPanelController matchPanelController;
+
+    private CurrentMatch currentMatch;
+
     @FXML
     private void initialize() {
+        matchPanelController = new MatchPanelController();
         buttonStartSinglePlayer.setOnAction(e -> handleStartSinglePlayer());
         buttonStartMultiPlayer.setOnAction(e -> handleStartMultiPlayer());
         buttonShowHistory.setOnAction(e -> handleShowHistory());
@@ -54,6 +60,8 @@ public class HomeController {
         // Criação da partida
         Match match = new Match(playerBoards, player1);
 
+        currentMatch.setMatch(match);
+
         // Passar a partida para a próxima cena (assumindo que o SceneManager pode lidar com isso)
         SceneManager.loadScene("/br/ufc/quixada/fxml/match.fxml");
     }
@@ -75,6 +83,8 @@ public class HomeController {
 
         // Criação da partida
         Match match = new Match(playerBoards, player1);
+
+        currentMatch.setMatch(match);
 
         // Passar a partida para a próxima cena
         SceneManager.loadScene("/br/ufc/quixada/fxml/match.fxml");

@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import br.ufc.quixada.model.Match;
 import javafx.scene.layout.Pane;
+import br.ufc.quixada.util.CurrentMatch;
 
 public class MatchPanelController {
 
@@ -25,11 +26,15 @@ public class MatchPanelController {
 
     private Match match;
 
+    private CurrentMatch currentMatch;
+
     @FXML
     private void initialize() {
         // match = new Match();
         // setupBoards();
         // setupShipsSpaces();
+        currentMatch = new CurrentMatch();
+        match = currentMatch.getMatch();
         ButtonQuit.setOnAction(e -> giveUp());
     }
 
