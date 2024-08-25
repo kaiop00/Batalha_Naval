@@ -31,6 +31,7 @@ public class HistoricController {
     @FXML
     public void initialize() throws SQLException {
         historicDAO = new MatchHistoryDAO();
+        System.out.println(historicDAO.list());
         loadMatchHistory();
         ButtonBackToHome.setOnAction(e -> backToHome());
     }
