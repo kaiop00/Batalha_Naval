@@ -1,0 +1,24 @@
+.root-container {
+}
+
+.title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.menu-button {
+    -fx-background-color: #4A90E2;
+}
+
+.menu-button:hover {
+    -fx-background-color: #3A80D2;
+}
+
+.exit-button {
+    -fx-background-color: #E74C3C;
+}
+
+.exit-button:hover {
+    -fx-background-color: #D74C3C;
+}

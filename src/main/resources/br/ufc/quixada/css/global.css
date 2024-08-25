@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'MedievalSharp';
+    src: url('../fonts/MedievalRegular.ttf');
+}
+
+.root {
+    -fx-font-family: 'MedievalSharp';
+    -fx-font-size: 48px;
+    -fx-background-image: url('../images/background.png');
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.button {
+    -fx-font-size: 32px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
+    -fx-background-color: #000000;
+}
