@@ -10,12 +10,14 @@
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            xmlns="http://javafx.com/javafx/13"
            fx:id="rootPane"
-           styleClass="root"
-           fx:controller="br.ufc.quixada.controller.HomeController">
+           fx:controller="br.ufc.quixada.controller.HomeController"
+           styleClass="root">
+
     <stylesheets>
         <URL value="@/br/ufc/quixada/css/global.css"/>
         <URL value="@/br/ufc/quixada/css/home.css"/>
     </stylesheets>
+
     <VBox alignment="CENTER" spacing="20">
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
