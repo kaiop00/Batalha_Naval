@@ -14,6 +14,26 @@ Depois, você pode executar a aplicação com:
 mvn javafx:run
 ```
 
+### Debug
+
+Para executar a aplicação em modo de debug é necessário configurar um debugger para conectar-se à porta 8000, no vscode você pode incluir a seguinte configuração no `launch.json`:
+
+```json
+{
+            "type": "java",
+            "name": "Debug (Attach) - Remote",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000
+        }
+```
+
+E executar a aplicação com
+
+```sh
+mvn javafx:run@debug
+```
+
 E os testes com
 
 ```sh
@@ -32,3 +52,5 @@ mvn test
 - [Documentação do TestFX com Junit5](https://testfx.github.io/TestFX/docs/javadoc/testfx-junit5/javadoc/org.testfx.junit5/module-summary.html)
 
 - [Documentação Mockito](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
+
+- [Inspetor de Componentes JavaFX](https://github.com/TangoraBox/ComponentInspector)
