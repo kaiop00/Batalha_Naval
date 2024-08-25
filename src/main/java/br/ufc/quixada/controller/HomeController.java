@@ -2,6 +2,8 @@ package br.ufc.quixada.controller;
 
 import br.ufc.quixada.util.SceneManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.util.Pair;
@@ -9,8 +11,8 @@ import javafx.application.Platform;
 import br.ufc.quixada.model.Player;
 import br.ufc.quixada.model.Match;
 import br.ufc.quixada.model.Board;
-import br.ufc.quixada.util.CurrentMatch;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,21 +32,28 @@ public class HomeController {
     @FXML
     private Button buttonExit;
 
-    private MatchPanelController matchPanelController;
-
-    private CurrentMatch currentMatch;
-
     @FXML
     private void initialize() {
-        matchPanelController = new MatchPanelController();
-        buttonStartSinglePlayer.setOnAction(e -> handleStartSinglePlayer());
-        buttonStartMultiPlayer.setOnAction(e -> handleStartMultiPlayer());
+        buttonStartSinglePlayer.setOnAction(e -> {
+            try {
+                handleStartSinglePlayer();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        buttonStartMultiPlayer.setOnAction(e -> {
+            try {
+                handleStartMultiPlayer();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
         buttonShowHistory.setOnAction(e -> handleShowHistory());
         buttonExit.setOnAction(e -> handleExit());
     }
 
     @FXML
-    private void handleStartSinglePlayer() {
+    private void handleStartSinglePlayer() throws IOException {
         System.out.println("Starting Single Player game...");
         Player player1 = new Player("Player 1", false);
         Player player2 = new Player("Player 2", true);
@@ -60,14 +69,17 @@ public class HomeController {
         // Criação da partida
         Match match = new Match(playerBoards, player1);
 
-        currentMatch.setMatch(match);
+        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/br/ufc/quixada/fxml/match.fxml"));
+        Parent root = loader.load();
+        MatchPanelController controller = loader.getController();
 
-        // Passar a partida para a próxima cena (assumindo que o SceneManager pode lidar com isso)
-        SceneManager.loadScene("/br/ufc/quixada/fxml/match.fxml");
+        controller.setMatch(match);
+
+        SceneManager.setRoot(root);
     }
 
     @FXML
-    private void handleStartMultiPlayer() {
+    private void handleStartMultiPlayer() throws IOException {
         System.out.println("Starting Multi Player game...");
         Player player1 = new Player("Player 1", false);
         Player player2 = new Player("Player 2", false);
@@ -84,10 +96,13 @@ public class HomeController {
         // Criação da partida
         Match match = new Match(playerBoards, player1);
 
-        currentMatch.setMatch(match);
+        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/br/ufc/quixada/fxml/match.fxml"));
+        Parent root = loader.load();
+        MatchPanelController controller = loader.getController();
 
-        // Passar a partida para a próxima cena
-        SceneManager.loadScene("/br/ufc/quixada/fxml/match.fxml");
+        controller.setMatch(match);
+
+        SceneManager.setRoot(root);
     }
 
     @FXML
