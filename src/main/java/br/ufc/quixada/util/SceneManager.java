@@ -15,6 +15,10 @@ public class SceneManager {
         primaryStage.setFullScreen(true);
     }
 
+    public static void setRoot(Parent root) {
+        primaryStage.getScene().setRoot(root);
+    }
+
     public static void loadScene(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));

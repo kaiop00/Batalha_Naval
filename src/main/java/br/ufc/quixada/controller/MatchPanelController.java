@@ -25,6 +25,7 @@ public class MatchPanelController {
 
     private Match match;
 
+
     @FXML
     private void initialize() {
         // match = new Match();
@@ -43,6 +44,10 @@ public class MatchPanelController {
 
     public void makePlay() {
         // TODO: Implementar a lógica para realizar uma jogada
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
     }
 
     public void rematch() {
