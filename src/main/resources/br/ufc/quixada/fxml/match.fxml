@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      xmlns="http://javafx.com/javafx/13"
+      fx:controller="br.ufc.quixada.controller.MatchPanelController"
+      alignment="CENTER"
+      styleClass="root">
+
+    <stylesheets>
+        <URL value="@/br/ufc/quixada/css/global.css"/>
+        <URL value="@/br/ufc/quixada/css/match.css"/>
+    </stylesheets>
+
+    <Label text="Batalha Naval" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- Tabuleiros -->
+    <HBox spacing="20" alignment="CENTER">
+        <!-- Tabuleiro do jogador -->
+        <GridPane fx:id="playerBoard" styleClass="board"/>
+        
+        <!-- Tabuleiro do oponente -->
+        <GridPane fx:id="opponentBoard" styleClass="board"/>
+    </HBox>
+
+    <!-- Informações e controles -->
+    <HBox spacing="20" alignment="CENTER">
+        <!-- Espaço para os navios -->
+        <Pane fx:id="shipsSpaces" prefWidth="300" prefHeight="100" 
+              style="-fx-border-color: black; -fx-border-width: 1px;"/>
+
+        <Button fx:id="ButtonQuit" text="Desistir"/>
+    </HBox>
+
+    <!-- Mensagens de status -->
+    <Label fx:id="statusLabel" text="Aguardando jogada..."/>
+
+</VBox>
