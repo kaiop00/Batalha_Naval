@@ -47,10 +47,13 @@ public class HistoricController {
     private HBox createMatchBox(MatchHistory match) {
         HBox matchBox = new HBox();
         matchBox.getStyleClass().add("match-box");
-
+        matchBox.setMinWidth(300); // Define uma largura mínima
+        matchBox.setPrefWidth(400); // Define uma largura preferida
+    
         VBox matchInfo = new VBox();
         matchInfo.getStyleClass().add("match-info");
-
+        matchInfo.setMinWidth(200); // Define uma largura mínima para a VBox
+    
         Label dateLabel = new Label("Date: " + match.getDateTime().toString());
         Label winnerLabel = new Label("Winner: " + match.getWinner().getName());
         VBox playersLabel = new VBox();
@@ -59,9 +62,10 @@ public class HistoricController {
             Label playerLabel = new Label(player.getName());
             playersLabel.getChildren().add(playerLabel);
         }
-
+    
         matchInfo.getChildren().addAll(dateLabel, winnerLabel, playersLabel);
-
+        matchBox.getChildren().add(matchInfo); // Adiciona matchInfo a matchBox
+    
         return matchBox;
     }
 
