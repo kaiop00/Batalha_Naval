@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 -- Dropar tabelas existentes
 DROP TABLE IF EXISTS match_history;
 DROP TABLE IF EXISTS player;
@@ -34,10 +36,3 @@ INSERT INTO player (name, ia) VALUES ('Player 2', TRUE);
 INSERT INTO player (name, ia) VALUES ('Player 3', FALSE);
 INSERT INTO player (name, ia) VALUES ('Player 4', TRUE);
 
--- Inserir partidas
-INSERT INTO match_history (winner_id) VALUES (1);
-INSERT INTO match_history (winner_id) VALUES (2);
-
--- Verificar os dados
-SELECT * FROM player;
-SELECT * FROM match_history;
