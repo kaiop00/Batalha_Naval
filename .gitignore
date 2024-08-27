@@ -6,3 +6,4 @@ database.db
 # ide files
 .idea
 .vscode
+launch.json
