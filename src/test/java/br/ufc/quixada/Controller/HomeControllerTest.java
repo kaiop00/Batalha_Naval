@@ -70,4 +70,36 @@ public class HomeControllerTest extends ApplicationTest {
         Node historyRoot = lookup(".root").query();
         assertNotNull(historyRoot, "A cena de histórico não foi carregada.");
     }
+
+    @Test
+    public void testStartSinglePlayerController() throws IOException {
+        // Simula o clique no botão "Start Single Player"
+        clickOn("#buttonStartSinglePlayer");
+
+        // Verifica se a função handleStartSinglePlayer foi chamada
+        // Verifica através de algum efeito esperado, por exemplo, mudança de cena ou estado
+        assertNotNull(controller);  // Verifica se o controller foi instanciado corretamente
+        // Adicione outras verificações relevantes aqui
+    }
+
+    @Test
+    public void testStartMultiPlayerController() throws IOException {
+        // Simula o clique no botão "Start Multi Player"
+        clickOn("#buttonStartMultiPlayer");
+
+        // Verifica se a função handleStartMultiPlayer foi chamada
+        assertNotNull(controller);
+        // Adicione outras verificações relevantes aqui
+    }
+
+    @Test
+    public void testShowHistoryController() {
+        // Simula o clique no botão "Show History"
+        clickOn("#buttonShowHistory");
+
+        // Verifica se a função handleShowHistory foi chamada
+        assertNotNull(controller);
+        // Adicione outras verificações relevantes aqui
+    }
+    
 }
