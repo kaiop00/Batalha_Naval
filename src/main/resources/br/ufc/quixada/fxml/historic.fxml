@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      xmlns="http://javafx.com/javafx/13"
+      fx:controller="br.ufc.quixada.controller.HistoricController"
+      styleClass="historic-root"
+      spacing="20">
+
+    <stylesheets>
+        <URL value="@/br/ufc/quixada/css/global.css"/>
+        <URL value="@/br/ufc/quixada/css/historic.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Histórico de Partidas" styleClass="title"/>
+
+    <ScrollPane VBox.vgrow="ALWAYS">
+        <VBox fx:id="matchesHistory" spacing="10">
+            <!-- Matches will be added here dynamically -->
+        </VBox>
+    </ScrollPane>
+
+    <Button fx:id="ButtonBackToHome" text="Voltar para o Início" onAction="#backToHome"/>
+
+</VBox>
