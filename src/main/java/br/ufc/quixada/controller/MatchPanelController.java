@@ -46,6 +46,10 @@ public class MatchPanelController {
         // TODO: Implementar a lógica para realizar uma jogada
     }
 
+    public MatchPanelController getController() {
+        return this;
+    }
+
     public void setMatch(Match match) {
         this.match = match;
     }
