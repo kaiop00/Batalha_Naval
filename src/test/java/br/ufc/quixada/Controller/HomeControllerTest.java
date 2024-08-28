@@ -32,6 +32,7 @@ public class HomeControllerTest extends ApplicationTest {
         startingScene = new Scene(root);
         HomeController controller = loader.getController();
         MatchHistoryDAO historicDAO = mock(MatchHistoryDAO.class);
+        controller.setMatchHistoryDAO(historicDAO);
         when(historicDAO.list()).thenReturn(new ArrayList<>());
         stage.show();
     }

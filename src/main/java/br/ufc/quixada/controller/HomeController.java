@@ -10,6 +10,7 @@ import javafx.util.Pair;
 import javafx.application.Platform;
 import br.ufc.quixada.model.Player;
 import br.ufc.quixada.model.Match;
+import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.model.Board;
 
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class HomeController {
     
     @FXML
     private Button buttonExit;
+
+    private MatchHistoryDAO historicDAO;
 
     @FXML
     private void initialize() {
@@ -57,6 +60,10 @@ public class HomeController {
             }
         });
         buttonExit.setOnAction(e -> handleExit());
+    }
+
+    public void setMatchHistoryDAO(MatchHistoryDAO historyDAO)  {
+        this.historicDAO = historyDAO;
     }
 
     @FXML
