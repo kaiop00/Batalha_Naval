@@ -44,6 +44,10 @@ public class HistoricController {
         }
     }
 
+    public void setMatchHistoryDAO(MatchHistoryDAO historyDAO) {
+        this.historicDAO = historyDAO;
+    }
+
     private HBox createMatchBox(MatchHistory match) {
         HBox matchBox = new HBox();
         matchBox.getStyleClass().add("match-box");

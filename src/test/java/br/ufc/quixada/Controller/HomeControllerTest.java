@@ -1,9 +1,12 @@
-package br.ufc.quixada.Controller;
+package br.ufc.quixada.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.util.SceneManager;
 
 public class HomeControllerTest extends ApplicationTest {
@@ -26,6 +30,9 @@ public class HomeControllerTest extends ApplicationTest {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/ufc/quixada/fxml/home.fxml"));
         Parent root = loader.load();
         startingScene = new Scene(root);
+        HomeController controller = loader.getController();
+        MatchHistoryDAO historicDAO = mock(MatchHistoryDAO.class);
+        when(historicDAO.list()).thenReturn(new ArrayList<>());
         stage.show();
     }
 
