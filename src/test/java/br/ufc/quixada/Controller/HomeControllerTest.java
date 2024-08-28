@@ -3,6 +3,8 @@ package br.ufc.quixada.Controller;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,43 +30,61 @@ public class HomeControllerTest extends ApplicationTest {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() throws SQLException, TimeoutException {
         FxToolkit.registerPrimaryStage();
         FxToolkit.setupStage(stage -> {
-            SceneManager.initialize(stage);
-            SceneManager.loadScene("/br/ufc/quixada/fxml/home.fxml");
+            stage.setScene(startingScene);  // Certifique-se de que a cena está definida
             stage.show();
+            SceneManager.initialize(stage);
         });
     }
 
 
     @Test
     public void testStartSinglePlayer() throws IOException {
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();  // Obtém o Stage registrado
         Parent previousRoot = startingScene.getRoot();
-        assertEquals(previousRoot, targetWindow().getScene().getRoot(), "A cena de match no modo singleplayer não foi carregada.");
+        assertEquals(previousRoot, stage.getScene().getRoot());
+
+        // Clica no botão para voltar à Home
         clickOn("#buttonStartSinglePlayer");
+
+        // Aguarda a mudança de cena
         sleep(1000);
-        // Verifica se a match scene foi carregada
-        assertNotEquals(previousRoot, targetWindow().getScene().getRoot(), "A cena de match no modo singleplayer não foi carregada.");
+
+        // Verifica se a cena mudou
+        assertNotEquals(previousRoot, stage.getScene().getRoot());
     }
 
     @Test
     public void testStartMultiPlayer() throws IOException {
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();  // Obtém o Stage registrado
         Parent previousRoot = startingScene.getRoot();
-        assertEquals(previousRoot, targetWindow().getScene().getRoot());
+        assertEquals(previousRoot, stage.getScene().getRoot());
+
+        // Clica no botão para voltar à Home
         clickOn("#buttonStartMultiPlayer");
+
+        // Aguarda a mudança de cena
         sleep(1000);
-        // Verifica se a match scene foi carregada
-        assertNotEquals(previousRoot, targetWindow().getScene().getRoot());
+
+        // Verifica se a cena mudou
+        assertNotEquals(previousRoot, stage.getScene().getRoot());
     }
 
     @Test
     public void testShowHistory() {
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();  // Obtém o Stage registrado
         Parent previousRoot = startingScene.getRoot();
-        assertEquals(previousRoot, targetWindow().getScene().getRoot(), "A cena de histórico de partidas não foi carregada.");
+        assertEquals(previousRoot, stage.getScene().getRoot());
+
+        // Clica no botão para voltar à Home
         clickOn("#buttonShowHistory");
+
+        // Aguarda a mudança de cena
         sleep(1000);
-        // Verifica se a cena histórico foi carregada
-        assertNotEquals(previousRoot, targetWindow().getScene().getRoot(), "A cena de histórico de partidas não foi carregada.");
+
+        // Verifica se a cena mudou
+        assertNotEquals(previousRoot, stage.getScene().getRoot());
     }
 }
