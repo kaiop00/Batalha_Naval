@@ -24,36 +24,27 @@ public class HistoricControllerTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Carrega a cena inicial
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/ufc/quixada/fxml/historic.fxml"));
         Parent root = loader.load();
         startingScene = new Scene(root);
-        controller = new HistoricController();
-
-        // Inicializa o controller, se necessário
-        controller.initialize();
-
-        // Exibe a cena
-        stage.setScene(startingScene);
         stage.show();
     }
 
     @BeforeEach
     public void setUp() throws SQLException, TimeoutException {
-        // Configura um histórico de partidas mockado
         FxToolkit.registerPrimaryStage();
         FxToolkit.setupStage(stage -> {
-            SceneManager.initialize(stage);
-            SceneManager.loadScene("/br/ufc/quixada/fxml/historic.fxml");
+            stage.setScene(startingScene);  // Certifique-se de que a cena está definida
             stage.show();
+            SceneManager.initialize(stage);
         });
     }
 
-
     @Test
     public void testBackToHome() {
-        // Cena antes do clique
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();  // Obtém o Stage registrado
         Parent previousRoot = startingScene.getRoot();
+        assertEquals(previousRoot, stage.getScene().getRoot());
 
         // Clica no botão para voltar à Home
         clickOn("#ButtonBackToHome");
@@ -62,6 +53,7 @@ public class HistoricControllerTest extends ApplicationTest {
         sleep(1000);
 
         // Verifica se a cena mudou
-        assertNotEquals(previousRoot, targetWindow().getScene().getRoot());
+        assertNotEquals(previousRoot, stage.getScene().getRoot());
     }
+
 }
