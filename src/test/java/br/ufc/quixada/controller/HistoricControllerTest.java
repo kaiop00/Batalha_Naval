@@ -1,42 +1,40 @@
 package br.ufc.quixada.controller;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.sql.SQLException;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.util.SceneManager;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class HistoricControllerTest extends ApplicationTest {
 
-    private MatchHistoryDAO mockMatchHistoryDAO;
     private HistoricController controller;
+    private Scene startingScene;
 
     @Override
     public void start(Stage stage) throws Exception {
+        // Carrega a cena inicial
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/ufc/quixada/fxml/historic.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
+        startingScene = new Scene(root);
+        controller = new HistoricController();
 
-        // Substitua o DAO real por um mock
-        mockMatchHistoryDAO = Mockito.mock(MatchHistoryDAO.class);
+        // Inicializa o controller, se necessário
         controller.initialize();
 
         // Exibe a cena
-        stage.setScene(new Scene(root));
+        stage.setScene(startingScene);
         stage.show();
     }
 
@@ -47,18 +45,23 @@ public class HistoricControllerTest extends ApplicationTest {
         FxToolkit.setupStage(stage -> {
             SceneManager.initialize(stage);
             SceneManager.loadScene("/br/ufc/quixada/fxml/historic.fxml");
-
             stage.show();
         });
     }
 
+
     @Test
     public void testBackToHome() {
-        FxRobot robot = new FxRobot(); // Instancia manualmente o FxRobot
-        robot.clickOn("#ButtonBackToHome");
+        // Cena antes do clique
+        Parent previousRoot = startingScene.getRoot();
 
-        // Verifica se a cena foi trocada
-        Node homeRoot = robot.lookup(".root").query();
-        assertNotNull(homeRoot, "A cena do jogo não foi carregada.");
+        // Clica no botão para voltar à Home
+        clickOn("#ButtonBackToHome");
+
+        // Aguarda a mudança de cena
+        sleep(1000);
+
+        // Verifica se a cena mudou
+        assertNotEquals(previousRoot, targetWindow().getScene().getRoot());
     }
 }
