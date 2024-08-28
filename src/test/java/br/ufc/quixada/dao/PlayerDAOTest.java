@@ -35,7 +35,7 @@ public class PlayerDAOTest {
     @BeforeAll
     public static void setUpAll() throws SQLException, IOException {
         Dotenv dotenv = mock(Dotenv.class);
-        when(dotenv.get("DATABASE_URL")).thenReturn("jdbc:sqlite:test.db");
+        when(dotenv.get("DATABASE_URL")).thenReturn("jdbc:sqlite::memory:");
         databaseConnection = DatabaseConnection.getInstance(dotenv);
     }
 
