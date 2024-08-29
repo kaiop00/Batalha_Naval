@@ -1,4 +1,4 @@
-package br.ufc.quixada.controller;
+package br.ufc.quixada.Controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import br.ufc.quixada.controller.HistoricController;
 import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.util.SceneManager;
 import javafx.fxml.FXMLLoader;

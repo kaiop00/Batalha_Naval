@@ -1,4 +1,4 @@
-package br.ufc.quixada.controller;
+package br.ufc.quixada.Controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import br.ufc.quixada.controller.HomeController;
 import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.util.SceneManager;
 
