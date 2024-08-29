@@ -30,9 +30,6 @@ public class HistoricController {
 
     @FXML
     public void initialize() throws SQLException {
-        historicDAO = new MatchHistoryDAO();
-        System.out.println(historicDAO.list());
-        loadMatchHistory();
         ButtonBackToHome.setOnAction(e -> backToHome());
     }
 
@@ -44,8 +41,9 @@ public class HistoricController {
         }
     }
 
-    public void setMatchHistoryDAO(MatchHistoryDAO historyDAO) {
+    public void setMatchHistoryDAO(MatchHistoryDAO historyDAO) throws SQLException {
         this.historicDAO = historyDAO;
+        loadMatchHistory();
     }
 
     private HBox createMatchBox(MatchHistory match) {
