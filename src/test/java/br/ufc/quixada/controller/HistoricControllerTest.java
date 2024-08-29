@@ -1,4 +1,4 @@
-package br.ufc.quixada.Controller;
+package br.ufc.quixada.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
