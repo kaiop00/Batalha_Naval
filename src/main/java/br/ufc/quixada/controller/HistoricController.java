@@ -29,7 +29,7 @@ public class HistoricController {
     private MatchHistoryDAO historicDAO;
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize() {
         ButtonBackToHome.setOnAction(e -> backToHome());
     }
 

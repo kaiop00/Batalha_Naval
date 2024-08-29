@@ -10,6 +10,7 @@ import javafx.util.Pair;
 import javafx.application.Platform;
 import br.ufc.quixada.model.Player;
 import br.ufc.quixada.model.Match;
+import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.model.Board;
 
 import java.io.IOException;
@@ -32,6 +33,8 @@ public class HomeController {
     @FXML
     private Button buttonExit;
 
+    private MatchHistoryDAO historicDAO;
+
     @FXML
     private void initialize() {
         buttonStartSinglePlayer.setOnAction(e -> {
@@ -48,8 +51,19 @@ public class HomeController {
                 e1.printStackTrace();
             }
         });
-        buttonShowHistory.setOnAction(e -> handleShowHistory());
+        buttonShowHistory.setOnAction(e -> {
+            try {
+                handleShowHistory();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         buttonExit.setOnAction(e -> handleExit());
+    }
+
+    public void setMatchHistoryDAO(MatchHistoryDAO historyDAO)  {
+        this.historicDAO = historyDAO;
     }
 
     @FXML
@@ -107,8 +121,11 @@ public class HomeController {
     }
 
     @FXML
-    private void handleShowHistory() {
-        SceneManager.loadScene("/br/ufc/quixada/fxml/historic.fxml");
+    private void handleShowHistory() throws IOException {
+        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/br/ufc/quixada/fxml/historic.fxml"));
+        Parent root = loader.load();
+        
+        SceneManager.setRoot(root);
     }
 
     @FXML
