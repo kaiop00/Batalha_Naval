@@ -42,8 +42,8 @@ public class HistoricController {
     }
 
     public void setMatchHistoryDAO(MatchHistoryDAO historyDAO) throws SQLException {
-        loadMatchHistory();
         this.historicDAO = historyDAO;
+        loadMatchHistory();
     }
 
     private HBox createMatchBox(MatchHistory match) {
