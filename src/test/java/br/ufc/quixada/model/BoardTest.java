@@ -58,16 +58,14 @@ class BoardTest {
     }
 
     @Test
-    void testPositionShipOutOfBoard(){
+    void testPositionShipOutOfBoard() throws IllegalArgumentException{
         Ship ship = mock(Ship.class);
 
-        Exception exception = assertThrows(Exception.class, () -> board.positionShip(ship, 11, 11));
-
-        assertEquals("Invalid Position", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> board.positionShip(ship, 11, 11));
     }
 
     @Test
-    void testPositionShipInValidPosition() throws Exception {
+    void testPositionShipInValidPosition() throws IllegalArgumentException{
         Ship ship = mock(Ship.class);
         when(ship.getSize()).thenReturn(3);
         when(ship.getVertical()).thenReturn(true);
@@ -77,7 +75,7 @@ class BoardTest {
     }
 
     @Test
-    void testPositionShipInOtherShip() throws Exception {
+    void testPositionShipInOtherShip() throws IllegalArgumentException {
         Ship ship = mock(Ship.class);
         when(ship.getSize()).thenReturn(3);
         when(ship.getVertical()).thenReturn(true);
@@ -89,13 +87,11 @@ class BoardTest {
         when(otherShip.getSize()).thenReturn(2);
         when(otherShip.getVertical()).thenReturn(false);
 
-        Exception exception = assertThrows(Exception.class, () -> board.positionShip(otherShip, 1, 1));
-
-        assertEquals("There a Ship in this Position", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> board.positionShip(otherShip, 1, 1));
     }
 
     @Test
-    void testsPositionAllShipsInValidPositions() throws Exception {
+    void testsPositionAllShipsInValidPositions() throws IllegalArgumentException {
         Ship ship1 = mock(Ship.class);
         Ship ship2 = mock(Ship.class);
         Ship ship3 = mock(Ship.class);
@@ -114,17 +110,17 @@ class BoardTest {
         when(ship4.getVertical()).thenReturn(true);
         when(ship5.getVertical()).thenReturn(false);
 
-        board.positionShip(ship1, 1, 1);
-        board.positionShip(ship2, 10, 1);
-        board.positionShip(ship3, 3, 6);
-        board.positionShip(ship4, 1, 10);
-        board.positionShip(ship5, 9, 1);
+        board.positionShip(ship1, 0, 0);
+        board.positionShip(ship2, 9, 0);
+        board.positionShip(ship3, 2, 5);
+        board.positionShip(ship4, 0, 9);
+        board.positionShip(ship5, 8, 0);
 
         assertEquals(5, board.getShips().length);
     }
 
     @Test
-    void testShuffle() throws Exception {
+    void testShuffle() throws IllegalArgumentException {
         Ship ship1 = mock(Ship.class);
         Ship ship2 = mock(Ship.class);
         Ship ship3 = mock(Ship.class);
@@ -143,11 +139,11 @@ class BoardTest {
         when(ship4.getVertical()).thenReturn(true);
         when(ship5.getVertical()).thenReturn(false);
 
-        board.positionShip(ship1, 1, 1);
-        board.positionShip(ship2, 10, 1);
-        board.positionShip(ship3, 3, 6);
-        board.positionShip(ship4, 1, 10);
-        board.positionShip(ship5, 9, 1);
+        board.positionShip(ship1, 0, 0);
+        board.positionShip(ship2, 9, 0);
+        board.positionShip(ship3, 2, 5);
+        board.positionShip(ship4, 0, 9);
+        board.positionShip(ship5, 8, 0);
 
         assertEquals(5, board.getShips().length);
 

@@ -56,16 +56,16 @@ public class Board {
         this.ships = ships;
     }
 
-    public void positionShip(Ship ship, int row, int column) throws Exception {
+    public void positionShip(Ship ship, int row, int column){
         if(!placeValidation(ship, row, column)){
-            throw new Exception("Invalid Position");
+            throw new IllegalArgumentException("Invalid Position");
         }
         for(int i = 0; i < ship.getSize(); i++){
             if (ship.getVertical()){
-                positions[row - 1 + i][column - 1].setShip(ship);
+                positions[row + i][column].setShip(ship);
             }
                 else{
-                positions[row - 1][column - 1 + i].setShip(ship);
+                positions[row][column + i].setShip(ship);
             }
         }
 
@@ -74,7 +74,7 @@ public class Board {
         setShips(newArray);
     }
 
-    public void shuffle() throws Exception {
+    public void shuffle(){
         for (Cell[] position : positions) {
             for (Cell cell : position) {
                 cell.setShip(null);
@@ -93,8 +93,8 @@ public class Board {
 
                 int order = positions.length;
 
-                int row = random.nextInt(order) + 1;
-                int column = random.nextInt(order) + 1;
+                int row = random.nextInt(order);
+                int column = random.nextInt(order);
 
                 if(placeValidation(ship, row, column)){
                     positionShip(ship, row, column);
@@ -120,12 +120,12 @@ public class Board {
 
         for(int i = 0; i < ship.getSize(); i++){
             if(ship.getVertical()){
-                if(positions[row - 1 + i][column - 1].getShip() != null){
+                if(positions[row + i][column].getShip() != null){
                     return false;
                 }
             }
             else{
-                if(positions[row - 1][column - 1 + i].getShip() != null ){
+                if(positions[row][column + i].getShip() != null ){
                     return false;
                 }
             }
