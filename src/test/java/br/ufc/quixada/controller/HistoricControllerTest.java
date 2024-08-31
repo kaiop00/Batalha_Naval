@@ -12,7 +12,6 @@ import java.util.concurrent.TimeoutException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import br.ufc.quixada.dao.MatchHistoryDAO;
 import br.ufc.quixada.util.SceneManager;
@@ -21,7 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HistoricControllerTest extends ApplicationTest {
+public class HistoricControllerTest extends BaseControllerTest {
 
     private HistoricController controller;
     private Scene startingScene;
@@ -35,22 +34,21 @@ public class HistoricControllerTest extends ApplicationTest {
         MatchHistoryDAO historicDAO = mock(MatchHistoryDAO.class);
         when(historicDAO.list()).thenReturn(new ArrayList<>());
         controller.setMatchHistoryDAO(historicDAO);
-        stage.show();
     }
 
     @BeforeEach
     public void setUp() throws SQLException, TimeoutException {
         FxToolkit.registerPrimaryStage();
         FxToolkit.setupStage(stage -> {
-            stage.setScene(startingScene);  // Certifique-se de que a cena está definida
-            stage.show();
+            stage.setScene(startingScene); // Certifique-se de que a cena está definida
             SceneManager.initialize(stage);
+            stage.show();
         });
     }
 
     @Test
     public void testBackToHome() {
-        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();  // Obtém o Stage registrado
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage(); // Obtém o Stage registrado
         Parent previousRoot = startingScene.getRoot();
         assertEquals(previousRoot, stage.getScene().getRoot());
 
