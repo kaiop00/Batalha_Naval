@@ -61,16 +61,16 @@ public class Match {
                       finished = true;
                   }
               }
+          }
 
-              board.getPositions()[row][column] = targetCell;
+          board.getPositions()[row][column] = targetCell;
 
-              for(Pair<Player, Board> pair : playerBoards){
-                  if(!pair.getKey().equals(currentPlayer)){
-                      currentPlayer = pair.getKey();
-                  }
+          for(Pair<Player, Board> pair : playerBoards){
+              if(!pair.getKey().equals(currentPlayer)){
+                  currentPlayer = pair.getKey();
               }
           }
-    }
+      }
   }
 
   public void makeRandomPlay(Board board){
