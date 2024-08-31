@@ -1,7 +1,6 @@
 package br.ufc.quixada.model;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class Board {
@@ -10,15 +9,27 @@ public class Board {
     private Ship[] ships;
 
     public Board() {
-        this.shipsLeft = 0;
+        this.shipsLeft = 5;
         this.positions = new Cell[10][10];
-        this.ships = new Ship[5];
+        this.ships = new Ship[0];
+
+        for(int i = 0; i < 10; i ++){
+            for (int j = 0; j < 10; j++) {
+                positions[i][j] = new Cell(null, false);
+            }
+        }
     }
 
     public Board(int size){
-        this.shipsLeft = 0;
+        this.shipsLeft = 5;
         this.positions = new Cell[size][size];
-        this.ships = new Ship[5];
+        this.ships = new Ship[0];
+
+        for(int i = 0; i < size; i ++){
+            for (int j = 0; j < size; j++) {
+                positions[i][j] = new Cell(null, false);
+            }
+        }
     }
 
     public int getShipsLeft() {
@@ -46,37 +57,36 @@ public class Board {
     }
 
     public void positionShip(Ship ship, int row, int column){
-        if(placeValidation(ship, row, column)){
-            for(int i = 0; i < ship.getSize(); i++){
-                if (ship.getVertical()){
-                    positions[row + i][column].setShip(ship);
-                }
-                else{
-                    positions[row][column + i].setShip(ship);
-                }
+        if(!placeValidation(ship, row, column)){
+            throw new IllegalArgumentException("Invalid Position");
+        }
+        for(int i = 0; i < ship.getSize(); i++){
+            if (ship.getVertical()){
+                positions[row + i][column].setShip(ship);
             }
+                else{
+                positions[row][column + i].setShip(ship);
+            }
+        }
 
-            Ship[] newArray = Arrays.copyOf(ships, ships.length + 1);
-            newArray[newArray.length - 1] = ship;
-            setShips(newArray);
-        }
-        else{
-            System.out.println("Invalid Position");
-        }
+        Ship[] newArray = Arrays.copyOf(ships, ships.length + 1);
+        newArray[newArray.length - 1] = ship;
+        setShips(newArray);
     }
 
     public void shuffle(){
-        for(int i = 0; i < positions.length; i++){
-            for(int j = 0; j < positions[i].length; j++){
-                positions[i][j].setShip(null);
+        for (Cell[] position : positions) {
+            for (Cell cell : position) {
+                cell.setShip(null);
             }
         }
 
-        Collections.shuffle(Arrays.asList(ships));
+        Ship[] newShipsOrder = ships;
+        ships = new Ship[0];
 
         Random random = new Random();
 
-        for(Ship ship : ships){
+        for(Ship ship : newShipsOrder){
             boolean placed = false;
 
             while(!placed){
@@ -108,7 +118,7 @@ public class Board {
             }
         }
 
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < ship.getSize(); i++){
             if(ship.getVertical()){
                 if(positions[row + i][column].getShip() != null){
                     return false;
