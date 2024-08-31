@@ -1,6 +1,8 @@
 package br.ufc.quixada.Controller;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -111,15 +113,32 @@ public class MatchPanelControllerTest extends ApplicationTest {
     }
 
 
-    @Test
+   @Test
     public void testGiveUp() {
-        // Verifica se a partida é finalizada e a cena é alterada
+        // Mock do método 'end' do Match
         doNothing().when(matchMock).end();
+
+        // Captura a cena e o root atual antes de dar "give up"
+        Stage stage = SceneManager.getStage();
+        Scene currentScene = stage.getScene();
+        Parent rootBefore = currentScene.getRoot();
+
+        // Executa o método 'giveUp'
         controller.giveUp();
+
+        // Verifica se o método 'end' foi chamado no mock de Match
         verify(matchMock).end();
-        verify(SceneManager.class);
-        
+
+        // Captura o root após o 'give up' para verificar a mudança
+        Parent rootAfter = currentScene.getRoot();
+
+        // Verifica se o root mudou após a execução de 'giveUp'
+        assertNotEquals(rootBefore, rootAfter, "A root da cena deveria ter mudado após dar give up");
+
+        // Verifica se a cena foi alterada através do SceneManager
+        verify(SceneManager.class).loadScene("/br/ufc/quixada/fxml/home.fxml");
     }
+}
 
     @Test
     public void testRematch() {

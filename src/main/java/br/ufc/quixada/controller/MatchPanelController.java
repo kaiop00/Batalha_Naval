@@ -9,11 +9,9 @@ import br.ufc.quixada.util.SceneManager;
 
 public class MatchPanelController {
 
-    private GridPane boards;
-
     
     @FXML
-    public GridPane playerBoard;
+    public GridPane playerBoard; 
 
     @FXML
     public GridPane opponentBoard;

@@ -39,4 +39,9 @@ public class SceneManager {
             System.err.println("Error loading scene: " + e.getMessage());
         }
     }
+
+    public static Stage getStage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getStage'");
+    }
 }

@@ -122,4 +122,9 @@ public class Board {
         }
         return true;
     }
+
+    public void clear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+    }
 }
