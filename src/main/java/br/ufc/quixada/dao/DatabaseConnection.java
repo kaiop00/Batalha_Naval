@@ -15,7 +15,7 @@ public class DatabaseConnection {
 	private static Connection connection;
 
 	private DatabaseConnection() throws SQLException {
-		dotenv = Dotenv.load();
+		dotenv = Dotenv.configure().ignoreIfMissing().load();
 		connect();
 	}
 
@@ -39,14 +39,14 @@ public class DatabaseConnection {
 	}
 
 	public static DatabaseConnection getInstance() throws SQLException {
-		if (instance == null) {
+		if (instance == null || instance.connection.isClosed()) {
 			instance = new DatabaseConnection();
 		}
 		return instance;
 	}
 
 	public static DatabaseConnection getInstance(Dotenv dotenv) throws SQLException {
-		if (instance == null) {
+		if (instance == null || instance.connection.isClosed()) {
 			instance = new DatabaseConnection(dotenv);
 		}
 		return instance;

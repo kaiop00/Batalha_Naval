@@ -14,7 +14,7 @@ public abstract class BaseControllerTest extends ApplicationTest {
 
     @BeforeAll
     public static void setUpClass() throws TimeoutException {
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
         String environment = dotenv.get("ENVIRONMENT");
         if (environment != null && environment.equals("test")) {
             System.setProperty("testfx.robot", "glass");
