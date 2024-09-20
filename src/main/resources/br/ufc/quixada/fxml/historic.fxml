@@ -11,7 +11,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" 
       xmlns="http://javafx.com/javafx/13"
       fx:controller="br.ufc.quixada.controller.HistoricController"
-      styleClass="historic-root"
+      styleClass="root"
       spacing="20">
 
     <stylesheets>

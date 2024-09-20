@@ -110,6 +110,12 @@
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>.env</include>
+                </includes>
+            </resource>
         </resources>
     </build>
 </project>

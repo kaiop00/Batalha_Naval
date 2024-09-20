@@ -23,7 +23,7 @@
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
         <Label text="Batalha Naval" styleClass="title"/>
-        <HBox alignment="CENTER" spacing="10">
+        <HBox alignment="CENTER" spacing="10" styleClass="button-container">
             <Button fx:id="buttonStartSinglePlayer" text="Iniciar Jogo Single Player" styleClass="menu-button"/>
             <Button fx:id="buttonStartMultiPlayer" text="Iniciar Jogo Multi Player" styleClass="menu-button"/>
             <Button fx:id="buttonShowHistory" text="Ver Histórico" styleClass="menu-button"/>

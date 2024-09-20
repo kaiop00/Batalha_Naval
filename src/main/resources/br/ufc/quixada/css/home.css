@@ -1,24 +1,25 @@
-.root-container {
-}
-
 .title {
+    -fx-font-family: 'Arial', sans-serif;
     -fx-font-weight: bold;
-    -fx-text-fill: #FFD700;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-text-fill: #0a181f;
+    -fx-font-size: 128px;
+    -fx-padding: 0px 0px 128px 0px;
 }
 
 .menu-button {
-    -fx-background-color: #4A90E2;
 }
 
 .menu-button:hover {
-    -fx-background-color: #3A80D2;
 }
 
 .exit-button {
-    -fx-background-color: #E74C3C;
 }
 
 .exit-button:hover {
-    -fx-background-color: #D74C3C;
+}
+
+/* Estilo adicional para o container dos botões */
+.button-container {
+    -fx-spacing: 30px;
+    -fx-padding: 30px;
 }

@@ -13,9 +13,22 @@
 
 .button {
     -fx-font-size: 32px;
-    -fx-padding: 8px 16px;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-text-fill: white;
-    -fx-background-color: #000000;
+    -fx-padding: 16px 32px;
+    -fx-background-radius: 10;
+    -fx-text-fill: #000000;
+    -fx-background-color: #EFB622;
+}
+
+.button:hover {
+    -fx-opacity: 0.95;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-translate-y: 4;
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
 }
